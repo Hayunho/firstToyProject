@@ -35,6 +35,7 @@ struct SecretNumberView: View {
                                     .fill(Color("ReverseColor"))
                                     .modifier(NumberButtonStyle())
                                 Text("?")
+                                    .foregroundColor(.white)
                                     .modifier(NumberButtonTitle())
                             }
                         } else {
