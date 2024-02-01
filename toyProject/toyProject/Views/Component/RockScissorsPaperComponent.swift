@@ -10,6 +10,27 @@ import SwiftUI
 struct RockScissorsPaperComponent: View {
     var rsp: RockScissorsPaper
     var isUserButton: Bool
+    var imageWidth: [CGFloat]
+    
+    let rockWidth: [CGFloat] = [68, 142.5]
+    let scissorsWidth: [CGFloat] = [92, 183]
+    let paperWidth: [CGFloat] = [72, 145]
+    
+    init(rsp: RockScissorsPaper, isUserButton: Bool) {
+        self.rsp = rsp
+        self.isUserButton = isUserButton
+        
+        switch self.rsp {
+        case .rock:
+            self.imageWidth = rockWidth
+            
+        case .scissors:
+            self.imageWidth = scissorsWidth
+            
+        case .paper:
+            self.imageWidth = paperWidth
+        }
+    }
     
     var body: some View {
         ZStack {
@@ -20,11 +41,11 @@ struct RockScissorsPaperComponent: View {
             Image("\(rsp.rawValue)")
                 .resizable()
                 .scaledToFit()
-                .frame(width: isUserButton ? 80 : 147)
+                .frame(width: isUserButton ? imageWidth[0] : imageWidth[1])
         }
     }
 }
 
 #Preview {
-    RockScissorsPaperComponent(rsp: .scissors, isUserButton: false)
+    RockScissorsPaperComponent(rsp: .rock, isUserButton: false)
 }
