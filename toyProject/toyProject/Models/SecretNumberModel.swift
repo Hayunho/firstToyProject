@@ -6,6 +6,13 @@
 //
 
 import Foundation
+//
+//enum SecretNumber: Int, CaseIterable {
+//    case firstNumber = Int.random(in: 0...9)
+//    case secondNumber = Int.random(in: 0...9)
+//    case thirdNumber = Int.random(in: 0...9)
+//    case forthNumber = Int.random(in: 0...9)
+//}
 
 struct SecretNumberModel {
     var firstNumber: Int
