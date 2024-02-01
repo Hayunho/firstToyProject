@@ -7,11 +7,16 @@
 
 import Foundation
 
-enum Gesture {
-    case rock, paper, scissors
-}
-
-struct RockPaperScissorsGame {
-    var playerChoice: Gesture?
-    var computerChoice: Gesture?
+struct SecretNumberModel {
+    var firstNumber: Int
+    var secondNumber: Int
+    var thirdNumber: Int
+    var forthNumber: Int
+    
+    init() {
+        self.firstNumber = Int.random(in: 0...9)
+        self.secondNumber = Int.random(in: 0...9)
+        self.thirdNumber = Int.random(in: 0...9)
+        self.forthNumber = Int.random(in: 0...9)
+    }
 }
