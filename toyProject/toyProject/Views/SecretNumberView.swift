@@ -16,7 +16,7 @@ struct SecretNumberView: View {
     ]
     
     @State private var seletedNumberCard: Int = 0
-    @State private var result: String = ""
+    @State private var result: [String] = ["", "", "", ""]
     
     var secretNumber: SecretNumberModel = SecretNumberModel()
     
@@ -25,27 +25,27 @@ struct SecretNumberView: View {
             TimerView()
             Spacer()
             Spacer()
-            
+                    
             HStack (spacing: 30){
                 Button {
                     seletedNumberCard = 1
                 } label: {
-                    NumberCardView(seletedNumberCard: seletedNumberCard, cardNumber: 1, result: result)
+                    NumberCardView(seletedNumberCard: seletedNumberCard, cardNumber: 1, result: result[0])
                 }
                 Button {
                     seletedNumberCard = 2
                 } label: {
-                    NumberCardView(seletedNumberCard: seletedNumberCard, cardNumber: 2, result: result)
+                    NumberCardView(seletedNumberCard: seletedNumberCard, cardNumber: 2, result: result[1])
                 }
                 Button {
                     seletedNumberCard = 3
                 } label: {
-                    NumberCardView(seletedNumberCard: seletedNumberCard, cardNumber: 3, result: result)
+                    NumberCardView(seletedNumberCard: seletedNumberCard, cardNumber: 3, result: result[2])
                 }
                 Button {
                     seletedNumberCard = 4
                 } label: {
-                    NumberCardView(seletedNumberCard: seletedNumberCard, cardNumber: 4, result: result)
+                    NumberCardView(seletedNumberCard: seletedNumberCard, cardNumber: 4, result: result[3])
                 }
             }
             
@@ -55,7 +55,7 @@ struct SecretNumberView: View {
                 HStack(spacing: 6) {
                     ForEach(firstNumbers, id: \.self) { number in
                         Button{
-                            result = secretNumber.compareNumber(seleted: seletedNumberCard, number: number)
+                            result[seletedNumberCard - 1] = secretNumber.compareNumber(seleted: seletedNumberCard, number: number)
                         } label: {
                             NumberButtonView(number: number)
                         }
@@ -67,7 +67,7 @@ struct SecretNumberView: View {
                 HStack(spacing: 6){
                     ForEach(secondNumbers, id: \.self) { number in
                         Button{
-                            result = secretNumber.compareNumber(seleted: seletedNumberCard, number: number)
+                            result[seletedNumberCard - 1] = secretNumber.compareNumber(seleted: seletedNumberCard, number: number)
                         } label: {
                             NumberButtonView(number: number)
                         }
@@ -80,7 +80,6 @@ struct SecretNumberView: View {
         }
         .navigationTitle("비밀번호 맞추기")
     }
-
 }
 
 // MARK: - View Modifier
