@@ -14,9 +14,6 @@ struct SecretNumberView: View {
     private let secondNumbers: [Int] = [
         6, 7, 8, 9, 0
     ]
-    private let cardNumbers: [Int] = [
-        1, 2, 3, 4
-    ]
     
     @State private var seletedNumberCard: Int = 0
     @State private var result: String = ""
@@ -28,29 +25,27 @@ struct SecretNumberView: View {
             TimerView()
             Spacer()
             Spacer()
-            HStack {
-                ForEach(cardNumbers, id: \.self) { cardNumber in
-                    Button {
-                        seletedNumberCard = cardNumber
-                    } label: {
-                        if seletedNumberCard == cardNumber {
-                            ZStack {
-                                Rectangle ()
-                                    .fill(Color("ReverseSubColor"))
-                                    .modifier(NumberCardStyle())
-                                Text("?")
-                                    .modifier(NumberCardTitle(isSeleted: true))
-                            }
-                        } else {
-                            ZStack {
-                                Rectangle ()
-                                    .fill(Color("SubColor"))
-                                    .modifier(NumberCardStyle())
-                                Text("?")
-                                    .modifier(NumberCardTitle(isSeleted: false))
-                            }
-                        }
-                    }
+            
+            HStack (spacing: 30){
+                Button {
+                    seletedNumberCard = 1
+                } label: {
+                    NumberCardView(seletedNumberCard: seletedNumberCard, cardNumber: 1, result: result)
+                }
+                Button {
+                    seletedNumberCard = 2
+                } label: {
+                    NumberCardView(seletedNumberCard: seletedNumberCard, cardNumber: 2, result: result)
+                }
+                Button {
+                    seletedNumberCard = 3
+                } label: {
+                    NumberCardView(seletedNumberCard: seletedNumberCard, cardNumber: 3, result: result)
+                }
+                Button {
+                    seletedNumberCard = 4
+                } label: {
+                    NumberCardView(seletedNumberCard: seletedNumberCard, cardNumber: 4, result: result)
                 }
             }
             
@@ -60,19 +55,9 @@ struct SecretNumberView: View {
                 HStack(spacing: 6) {
                     ForEach(firstNumbers, id: \.self) { number in
                         Button{
-                            if secretNumber.firstNumber == number {
-                                print("O")
-                            } else {
-                                print("X")
-                            }
+                            result = secretNumber.compareNumber(seleted: seletedNumberCard, number: number)
                         } label: {
-                            ZStack {
-                                Rectangle ()
-                                    .fill(Color("MainColor"))
-                                    .modifier(NumberButtonStyle())
-                                Text("\(number)")
-                                    .modifier(NumberButtonTitle())
-                            }
+                            NumberButtonView(number: number)
                         }
                         
                     }
@@ -82,15 +67,9 @@ struct SecretNumberView: View {
                 HStack(spacing: 6){
                     ForEach(secondNumbers, id: \.self) { number in
                         Button{
-                            result = compareNumber(seleted: seletedNumberCard, number: number, cardNumber:3)
+                            result = secretNumber.compareNumber(seleted: seletedNumberCard, number: number)
                         } label: {
-                            ZStack {
-                                Rectangle ()
-                                    .fill(Color("MainColor"))
-                                    .modifier(NumberButtonStyle())
-                                Text("\(number)")
-                                    .modifier(NumberButtonTitle())
-                            }
+                            NumberButtonView(number: number)
                         }
                         
                     }
@@ -101,8 +80,10 @@ struct SecretNumberView: View {
         }
         .navigationTitle("비밀번호 맞추기")
     }
+
 }
 
+// MARK: - View Modifier
 
 struct NumberCardStyle: ViewModifier {
     private let screenWidth = UIScreen.main.bounds.size.width
@@ -117,11 +98,7 @@ struct NumberCardStyle: ViewModifier {
 }
 
 struct NumberCardTitle: ViewModifier {
-    var isSeleted: Bool = false
-    
-    init(isSeleted: Bool) {
-        self.isSeleted = isSeleted
-    }
+    var isSeleted: Bool
     
     func body(content: Content) -> some View {
         if isSeleted {
@@ -169,50 +146,62 @@ struct NumberButtonTitle: ViewModifier {
     }
 }
 
+// MARK: - View
 
-func compareNumber(seleted: Int, number: Int, cardNumber: Int) -> String{
-    var result: String = ""
+struct NumberButtonView: View {
+    let number: Int
     
-    switch(seleted) {
-    case 1:
-        if number == cardNumber {
-            result = "GOOD"
-        } else if number < cardNumber {
-            result = "UP"
-        } else {
-            result = "DOWN"
+    var body: some View {
+        ZStack {
+            Rectangle ()
+                .fill(Color("MainColor"))
+                .modifier(NumberButtonStyle())
+            Text("\(number)")
+                .modifier(NumberButtonTitle())
         }
-    case 2:
-        if number == cardNumber {
-            result = "GOOD"
-        } else if number < cardNumber {
-            result = "UP"
-        } else {
-            result = "DOWN"
-        }
-    case 3:
-        if number == cardNumber {
-            result = "GOOD"
-        } else if number < cardNumber {
-            result = "UP"
-        } else {
-            result = "DOWN"
-        }
-    case 4:
-        if number == cardNumber {
-            result = "GOOD"
-        } else if number < cardNumber {
-            result = "UP"
-        } else {
-            result = "DOWN"
-        }
-    default:
-        break
     }
-    
-    return result
 }
 
+struct NumberCardView: View {
+    let seletedNumberCard: Int
+    let cardNumber: Int
+    let result: String
+    
+    var body: some View {
+        ZStack {
+            if seletedNumberCard == cardNumber {
+                Rectangle ()
+                    .fill(Color("ReverseSubColor"))
+                    .modifier(NumberCardStyle())
+                VStack {
+                    Text("\(result)")
+                        .frame(width: screenWidth * 0.17, height:screenHeight * 0.02)
+                        .fontWeight(.medium)
+                        .font(.system(size: 20))
+                        .foregroundStyle(Color(.white))
+                    Text("?")
+                        .modifier(NumberCardTitle(isSeleted: true))
+                }
+                
+            } else {
+                Rectangle ()
+                    .fill(Color("SubColor"))
+                    .modifier(NumberCardStyle())
+                VStack {
+                    Text("\(result)")
+                        .frame(width: screenWidth * 0.17, height:screenHeight * 0.02)
+                        .fontWeight(.medium)
+                        .font(.system(size: 20))
+                        .foregroundStyle(Color(.black))
+                    Text("?")
+                        .modifier(NumberCardTitle(isSeleted: false))
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Preview
 #Preview {
     NavigationStack {
         SecretNumberView()
