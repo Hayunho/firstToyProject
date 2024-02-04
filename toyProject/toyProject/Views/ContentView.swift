@@ -30,9 +30,7 @@ struct ContentView: View {
                         }
                     }
                     
-                    Button {
-                        
-                    } label: {
+                    NavigationLink(destination: SecretNumberView()) {
                         ZStack {
                             Rectangle()
                                 .fill(Color("MainColor"))
