@@ -9,41 +9,41 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            VStack{
-                Text("미니게임")
-                    .font(.system(size: 72))
-                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-            }
-            
-            Spacer()
-            
-            VStack{
-                Button {
-                    
-                } label: {
-                    ZStack {
-                        Rectangle()
-                            .fill(Color("MainColor"))
-                            .modifier(MiniGameButtonStyle())
-                        Text("가위바위보")
-                            .modifier(MiniGameButtonTitle())
-                    }
+        NavigationStack {
+            VStack {
+                VStack{
+                    Text("미니게임")
+                        .font(.system(size: 72))
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 }
                 
-                Button {
+                Spacer()
+                
+                VStack{
+                    NavigationLink(destination: RockScissorsPaperView()) {
+                        ZStack {
+                            Rectangle()
+                                .fill(Color("MainColor"))
+                                .modifier(MiniGameButtonStyle())
+                            Text("가위바위보")
+                                .modifier(MiniGameButtonTitle())
+                        }
+                    }
                     
-                } label: {
-                    ZStack {
-                        Rectangle()
-                            .fill(Color("MainColor"))
-                            .modifier(MiniGameButtonStyle())
-                        Text("비밀번호")
-                            .modifier(MiniGameButtonTitle())
+                    Button {
+                        
+                    } label: {
+                        ZStack {
+                            Rectangle()
+                                .fill(Color("MainColor"))
+                                .modifier(MiniGameButtonStyle())
+                            Text("비밀번호")
+                                .modifier(MiniGameButtonTitle())
+                        }
                     }
                 }
+                Spacer()
             }
-            Spacer()
         }
         .padding()
     }

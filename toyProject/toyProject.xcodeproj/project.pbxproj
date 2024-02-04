@@ -18,6 +18,7 @@
 		30CEE0AD2B6A3963006A94C6 /* RockScissorsPaperModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CEE0AC2B6A3963006A94C6 /* RockScissorsPaperModel.swift */; };
 		30CEE0AF2B6A3988006A94C6 /* SecretNumberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CEE0AE2B6A3988006A94C6 /* SecretNumberModel.swift */; };
 		A8A154202B6A409C00F86B9D /* MyTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1541F2B6A409C00F86B9D /* MyTimer.swift */; };
+		A8A154222B6B2E7600F86B9D /* RockScissorsPaperComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A154212B6B2E7600F86B9D /* RockScissorsPaperComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		30CEE0AC2B6A3963006A94C6 /* RockScissorsPaperModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockScissorsPaperModel.swift; sourceTree = "<group>"; };
 		30CEE0AE2B6A3988006A94C6 /* SecretNumberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretNumberModel.swift; sourceTree = "<group>"; };
 		A8A1541F2B6A409C00F86B9D /* MyTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTimer.swift; sourceTree = "<group>"; };
+		A8A154212B6B2E7600F86B9D /* RockScissorsPaperComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockScissorsPaperComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				30CEE0A62B6A381F006A94C6 /* TimerView.swift */,
+				A8A154212B6B2E7600F86B9D /* RockScissorsPaperComponent.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				30CEE0A72B6A381F006A94C6 /* TimerView.swift in Sources */,
 				30CEE0A92B6A3830006A94C6 /* RockScissorsPaperView.swift in Sources */,
 				30041AA82B67998600693B84 /* ContentView.swift in Sources */,
+				A8A154222B6B2E7600F86B9D /* RockScissorsPaperComponent.swift in Sources */,
 				30CEE0AF2B6A3988006A94C6 /* SecretNumberModel.swift in Sources */,
 				30CEE0AD2B6A3963006A94C6 /* RockScissorsPaperModel.swift in Sources */,
 				30041AA62B67998600693B84 /* toyProjectApp.swift in Sources */,
