@@ -7,10 +7,6 @@
 
 import Foundation
 
-struct RockScissorsPaperModel {
-    
-}
-
 enum RockScissorsPaper: String {
     case rock = "Rock"
     case scissors = "Scissors"
