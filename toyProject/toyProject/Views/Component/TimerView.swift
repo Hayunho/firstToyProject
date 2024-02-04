@@ -12,7 +12,7 @@ let screenHeight = UIScreen.main.bounds.size.height
 
 struct TimerView: View {
     
-    @ObservedObject var myTimer = MyTimer()
+    @StateObject var myTimer = MyTimer()
     
     var body: some View {
         VStack {
